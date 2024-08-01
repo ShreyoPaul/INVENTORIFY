@@ -1,0 +1,1 @@
+export const BaseURL = 'https://tms2-shreyopauls-projects.vercel.app'
