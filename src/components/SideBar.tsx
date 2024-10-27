@@ -11,11 +11,9 @@ import Boards from '../../public/pic/Boards.png'
 import Settings from '../../public/pic/Settings.png'
 import Teams from '../../public/pic/Teams.png'
 import create from '../../public/pic/create.png'
-import cross from '../../public/pic/cross.png'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCookies } from 'next-client-cookies'
 import Create from './Create'
-import { FaCross } from 'react-icons/fa'
 import { RxCross1 } from 'react-icons/rx'
 import { useState } from 'react'
 import { RiMenu2Line } from 'react-icons/ri'
@@ -128,7 +126,7 @@ const SideBar = ({ user, FetchAllInventories, setCreateToggle, createToggle }: {
             </div>
             {
                 !toggleMenu &&
-                <div className='fixed p-2 rounded-full shadow-3xl bottom-5 right-5 z-30 bg-[#FF8A08] text-white' onClick={() => setToggleMenu(true)}>
+                <div className='fixed p-2 rounded-full shadow-3xl bottom-5 right-5 z-30 bg-[#FF8A08] text-white md:hidden' onClick={() => setToggleMenu(true)}>
                     <RiMenu2Line className='text-xl font-semibold' />
                 </div>
             }

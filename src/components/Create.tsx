@@ -1,6 +1,6 @@
 'use client'
 
-import cross from '../../public/pic/cross.png'
+// import cross from '../../public/pic/cross.png'
 import Image from 'next/image'
 import { GoPlus } from 'react-icons/go'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
@@ -12,6 +12,7 @@ import { MdCancel } from 'react-icons/md'
 import { AiFillProduct } from 'react-icons/ai'
 import { IoMdArrowDroprightCircle, IoMdPricetags } from 'react-icons/io'
 import { VscSymbolProperty } from 'react-icons/vsc'
+import { RxCross1 } from 'react-icons/rx'
 
 interface Product {
     Name: string
@@ -35,7 +36,7 @@ export interface InventoryProps {
     Products: Product[]
 }
 
-const Create = ({ setCreateToggle, FetchAllInventories }: any) => {
+const Create = ({ setCreateToggle, FetchAllInventories }: any): any => {
 
     const [inventory, setInventory] = useState<Inventory>({
         Name: "", Attributes: [], Products: []
@@ -44,7 +45,7 @@ const Create = ({ setCreateToggle, FetchAllInventories }: any) => {
     const handleInputs = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const { name, value } = e.target
-        setInventory(prev => ({ ...prev, [name]: value }))
+        setInventory((prev: any) => ({ ...prev, [name]: value }))
     }
 
     const [attribute, setAttribute] = useState('');
@@ -96,7 +97,7 @@ const Create = ({ setCreateToggle, FetchAllInventories }: any) => {
             {/* <Toaster /> */}
             <div className='flex flex-row w-full justify-between mb-[27px]'>
                 <div className='flex flex-row gap-4 items-center justify-center text-sm font-semibold'>
-                    <Image src={cross} alt='cross' width={24} height={24} className='cursor-pointer' onClick={() => {
+                    <RxCross1 width={24} height={24} className='cursor-pointer' onClick={() => {
                         setAttribute("")
                         setCreateToggle(false)
                     }} />
@@ -209,9 +210,9 @@ const CreateProduct = ({ setCreateToggle, FetchAllProsucts, inventory, productAt
     const handleMainInputs = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const { name, value } = e.target
-        if (name === "Name") return setProduct(prev => ({ ...prev, [name]: value }))
-        else if (name === "CGST" || name === "SGST") return setProduct(prev => ({ ...prev, [name]: value }))
-        else return setProduct(prev => ({ ...prev, [name]: parseInt(value) }))
+        if (name === "Name") return setProduct((prev: any) => ({ ...prev, [name]: value }))
+        else if (name === "CGST" || name === "SGST") return setProduct((prev: any) => ({ ...prev, [name]: value }))
+        else return setProduct((prev: any) => ({ ...prev, [name]: parseInt(value) }))
     }
     const handleInputs = (e: ChangeEvent<HTMLInputElement>, i: number) => {
         e.preventDefault();
@@ -228,16 +229,16 @@ const CreateProduct = ({ setCreateToggle, FetchAllProsucts, inventory, productAt
 
     const [attribute, setAttribute] = useState('');
     const cookies = useCookies();
-    const cookie = cookies.get('user')
+    const cookie = cookies.get('token')
     const today = new Date().toISOString().split('T')[0];
 
-    console.log(product)
+    console.log(cookie)
     return (
         <div className='px-6 py-4 bg-white w-full md:w-[670px] font-barlow h-screen overflow-auto'>
             {/* <Toaster /> */}
             <div className='flex flex-row w-full justify-between mb-[27px]'>
                 <div className='flex flex-row gap-4 items-center justify-center text-sm font-semibold'>
-                    <Image src={cross} alt='cross' width={24} height={24} className='cursor-pointer' onClick={() => {
+                    <RxCross1 width={24} height={24} className='cursor-pointer' onClick={() => {
                         setAttribute("")
                         setCreateToggle(false)
                     }} />

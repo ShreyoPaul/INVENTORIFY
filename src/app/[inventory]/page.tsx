@@ -116,7 +116,7 @@ export default function page({ params }: { params: { inventory: string } }) {
         <main className="w-full max-h-screen overflow-hidden bg-whiteShade flex flex-row">
             <Toaster />
             {/* Side Layout  */}
-            {/* <div className="w-[300px] z-10 bg-white shadow-lg max-h-screen h-screen overflow-hidden text-whiteShade px-4 py-6 pt-8 hidden md:flex md:flex-col justify-between">
+            <div className="w-[300px] z-10 bg-white shadow-lg max-h-screen h-screen overflow-hidden text-whiteShade px-4 py-6 pt-8 hidden md:flex md:flex-col justify-between">
                 <div>
                     <div className="text-xl flex flex-row font-semibold pb-2">
                         <Image src={profile} alt="profile" width={31} height={31} className="pr-2" />
@@ -169,8 +169,7 @@ export default function page({ params }: { params: { inventory: string } }) {
                         <div className='text-[13px]'>Get the full experience </div>
                     </div>
                 </div>
-            </div> */}
-            <SideBar user={user} FetchAllInventories={() => { }} createToggle={createToggleInv} setCreateToggle={setCreateToggleInv} />
+            </div>
 
             <div className="w-full relative overflow-y-auto overflow-x-hidden px-8 pt-6 flex min-h-screen  bg-[#F7F7F7] flex-col items-center justify-start ">
                 <div className='w-full font-barlow flex flex-row justify-between items-center pb-4'>
