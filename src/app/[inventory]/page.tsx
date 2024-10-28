@@ -21,7 +21,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { BaseURL } from "@/constants/baseUrl";
 import { useEffect, useState } from "react";
-import { MdHelpOutline } from "react-icons/md";
+import { MdDelete, MdHelpOutline } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import Create, { CreateProduct, InventoryProps } from "@/components/Create";
 import SideBar from "@/components/SideBar";
@@ -63,7 +63,7 @@ export default function page({ params }: { params: { inventory: string } }) {
     const [productAttribute, setProductAttribute] = useState<any>([])
 
     const FetchAllProduct = async () => {
-        setIsLoading(true)
+        // setIsLoading(true)
         try {
             let result: any = await fetch(`${BaseURL}/${params.inventory}`, {
                 method: 'GET',
@@ -74,7 +74,7 @@ export default function page({ params }: { params: { inventory: string } }) {
                 credentials: 'include'
             })
             result = await result.json()
-            console.log(result)
+            // console.log(result)
             if (result.error) return toast.error(result.error)
             if (result.user && result?.result) {
                 setUser(result.user)
@@ -98,7 +98,32 @@ export default function page({ params }: { params: { inventory: string } }) {
             alert("Something went wrong!")
             return router.replace("/")
         }
-        return setIsLoading(false)
+        // return setIsLoading(false)
+    }
+
+    const deleteProduct = async (productId: string) => {
+        try {
+            const body = JSON.stringify({pid: productId})
+            let result: any = await fetch(`${BaseURL}/${params.inventory}`, {
+                method: 'DELETE',
+                headers: {
+                    "content-type": "application/json",
+                    "Authorization": `${cookie}`
+                },
+                credentials: 'include',
+                body: body
+            })
+            result = await result.json()
+            console.log(result)
+            if (result.error) return toast.error(result.error)
+            if (result.user && result?.result) {
+                toast.success("Product is deleted!")
+                FetchAllProduct()
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went wrong!")
+        }
     }
 
     const handleLogout = () => {
@@ -200,35 +225,6 @@ export default function page({ params }: { params: { inventory: string } }) {
                     inventory.Products.length < 1 && !isLoading ? <div>No inventory created</div>
                         : (
                             !isLoading ?
-                                // <div className='w-full flex flex-col flex-wrap gap-2 text-sm  items-center'>
-                                //     <div className="w-full flex flex-row border-b-black">
-                                //         <span className="p-2">Sl.</span>
-                                //         <span className="p-2 min-w-[33%]">Name</span>
-                                //         {
-                                //             inventory.Attributes?.map((attribute, i) => {
-                                //                 return (
-                                //                     <span key={i} className="p-2">{attribute}</span>
-                                //                 )
-                                //             })
-                                //         }
-                                //     </div>
-                                //     {inventory.Products?.map((product: any, i) => {
-                                //         return (
-                                //             <div key={i} className='w-full'>
-                                //                 <span className="p-2">{i + 1}</span>
-                                //                 <span className="p-2  min-w-[33%]">{product.Name}</span>
-                                //                 {
-                                //                     product.Attributes?.map((attribute: any, i: any) => {
-                                //                         console.log(attribute.Value)
-                                //                         return (
-                                //                             <span key={i} className="p-2">{attribute.Value}</span>
-                                //                         )
-                                //                     })
-                                //                 }
-                                //             </div>
-                                //         )
-                                //     })}
-                                // </div>
                                 (
                                     <div className="relative overflow-x-auto w-full bg-white p-4 rounded-lg">
                                         <table className="w-full text-sm text-left text-gray-500 ">
@@ -262,6 +258,9 @@ export default function page({ params }: { params: { inventory: string } }) {
                                                             </th>
                                                         )
                                                     })}
+                                                    <th scope="col" className="px-6 py-3 rounded-r-lg">
+
+                                                    </th>
 
                                                 </tr>
                                             </thead>
@@ -292,6 +291,9 @@ export default function page({ params }: { params: { inventory: string } }) {
                                                                     )
                                                                 })
                                                             }
+                                                            <th scope="col" className="px-4 py-3 rounded-r-lg max-w-10 cursor-pointer" onClick={() => deleteProduct(product.ID)}>
+                                                                <MdDelete width={20} height={20} className="p-1 text-2xl hover:text-gray-800 hover:bg-gray-200 duration-200 rounded-full " />
+                                                            </th>
                                                         </tr>
                                                     )
                                                 })}

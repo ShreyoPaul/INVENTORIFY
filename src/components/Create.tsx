@@ -50,7 +50,7 @@ const Create = ({ setCreateToggle, FetchAllInventories }: any): any => {
 
     const [attribute, setAttribute] = useState('');
     const cookies = useCookies();
-    const cookie = cookies.get('user')
+    const cookie = cookies.get('token')
     const today = new Date().toISOString().split('T')[0];
 
     const addAttribute = () => {

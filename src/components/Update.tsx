@@ -33,7 +33,10 @@ const UpdateProduct = ({ setCreateToggle, FetchAllProduct, prdt, setPrdt }: { se
     const [product, setProduct] = useState<Product>({
         Name: "", Attributes: [], Amount: 0, Qty: 0, CGST: 0, SGST: 0, ID: ""
     })
-    console.log("prdt:", prdt)
+
+    const cookies = useCookies();
+    const cookie = cookies.get('token')
+    const today = new Date().toISOString().split('T')[0];
     // const [inputs, setInputs] = useState<any>(inventory.Attributes.map((x: string, i: number) => { return "" }))
     // console.log(product, inventory)
 
@@ -94,11 +97,6 @@ const UpdateProduct = ({ setCreateToggle, FetchAllProduct, prdt, setPrdt }: { se
         else if (name === "CGST" || name === "SGST") return setProduct(prev => ({ ...prev, [name]: value }))
         else return setProduct(prev => ({ ...prev, [name]: parseInt(value) }))
     }
-
-    const cookies = useCookies();
-    const cookie = cookies.get('user')
-    const today = new Date().toISOString().split('T')[0];
-
     // console.log(product)
     return (
         <div className='px-6 py-4 bg-white w-full md:w-[670px] font-barlow h-screen overflow-auto'>
