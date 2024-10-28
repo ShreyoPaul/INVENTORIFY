@@ -140,22 +140,19 @@ export default function page({ params }: { params: { inventory: string } }) {
                             <Image src={Home} alt="Home" width={24} height={24} />
                             Home
                         </Link>
-                        <Link href={"/boards"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/boards' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
+                        <Link href={"/billing"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/billing' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
                             <Image src={Boards} alt="Boards" width={24} height={24} />
-                            Boards
+                            Billing
                         </Link>
-                        <Link href={"/settings"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/settings' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
-                            <Image src={Settings} alt="Settings" width={24} height={24} />
-                            Settings
-                        </Link>
-                        <Link href={"/teams"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/teams' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
+                        <Link href={"/update"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/update' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
                             <Image src={Teams} alt="Teams" width={24} height={24} />
-                            Teams
+                            Update
                         </Link>
-                        <Link href={"/analytics"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/analytics' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
-                            <Image src={Analytics} alt="Analytics" width={24} height={24} />
-                            Analytics
+                        <Link href={"/bills"} className={`w-auto p-2 rounded flex flex-row items-center gap-4 border border-transparent cursor-pointer transform duration-[300ms] ease-in-out ${pathname === '/bills' && 'bg-[#F4F4F4] text-[#797979] border-[#DDDDDD]'}`}>
+                            <Image src={Settings} alt="Settings" width={24} height={24} />
+                            Bills
                         </Link>
+
                     </div>
                     <button onClick={() => setCreateToggle(!createToggle)} className='rounded-lg bg-gradient-to-b from-[#FF8A08] to-[#FFC100] text-white py-[14px] text-center w-full flex flex-row justify-center gap-2' >
                         Create new Product
@@ -192,7 +189,7 @@ export default function page({ params }: { params: { inventory: string } }) {
                             Calendar view
                             <Image src={cal} alt='cal' width={24} height={24} />
                         </div> */}
-                        
+
 
                     </div>
                 </div>
